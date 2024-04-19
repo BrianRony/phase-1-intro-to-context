@@ -42,3 +42,13 @@ function wagesEarnedOnDate(employee,specificDate){
     employee.payPerHour
     return (pay.toString())
 }
+function allWagesFor(employee){
+    let workedDates = employee.timeInEvents.map((e)=> e.date)
+    let payable = workedDates.reduce((acum,date)=> {
+        return acum + wagesEarnedOnDate(employee,date)
+    })
+    return payable
+}
+function calculatePayroll(){
+    (employeeRecords)=> employeeRecords.reduce((accum,record)=> accum + allWagesFor(record)) 
+}
